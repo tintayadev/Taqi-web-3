@@ -12,15 +12,28 @@ type Props = {
 };
 
 function buildFakePosts(route: FeaturedRoute): ChallengePost[] {
-  const fallback =
-    "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop";
+  const nazca =
+    "https://res.cloudinary.com/aenetworks/image/upload/c_fill,ar_2,w_3840,h_1920,g_auto/dpr_auto/f_auto/q_auto:eco/v1/gettyimages-460363072-2?_a=BAVAZGID0";
+  const titicaca =
+    "https://media.istockphoto.com/id/843617562/es/foto/lago-titicaca-puno.jpg?s=612x612&w=0&k=20&c=DF0Yw321__wjupelWzvQuUc2Qu3Ojx-rHBxBczxGFEk=";
+  const uyuni =
+    "https://media.istockphoto.com/id/639412384/es/foto/amanecer-en-el-salar-de-uyuni-bolivia.jpg?s=612x612&w=0&k=20&c=_zY293KdaRmeC33_gwwtwKOsZyQTHqJFZv8xzkNoYN0=";
+  const machu = "https://statics.corta.com/2025/09/68c9e403a75a4.jpeg";
+
+  const bySlug: Record<string, string> = {
+    "lake-titicaca-expedition": titicaca,
+    "nazca-lines-flight": nazca,
+    "machu-picchu-trail": machu,
+  };
+
+  const hero = bySlug[route.slug] ?? uyuni;
 
   return [
     {
       id: "fx1",
       userHandle: "alex.r",
       startedAgo: "just now",
-      photoUrl: fallback,
+      photoUrl: hero,
       likes: 3,
       comments: [{ user: "sofia", text: "Buen punto de referencia." }],
       confirmedCount: 0,
@@ -33,8 +46,7 @@ function buildFakePosts(route: FeaturedRoute): ChallengePost[] {
       id: "fx2",
       userHandle: "mariana.v",
       startedAgo: "1h ago",
-      photoUrl:
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
+      photoUrl: hero,
       likes: 9,
       comments: [{ user: "tomas_q", text: "Creo que es la orilla sur." }],
       confirmedCount: 2,
@@ -43,7 +55,7 @@ function buildFakePosts(route: FeaturedRoute): ChallengePost[] {
       milestoneName: "First milestone",
       milestoneLabel: "El Alto → Titicaca Lake",
     },
-  ] as ChallengePost[];
+  ];
 }
 
 export default function ChallengePostModal({

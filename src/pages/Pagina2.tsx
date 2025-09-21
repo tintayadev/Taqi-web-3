@@ -62,10 +62,7 @@ const Pagina2: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [uploadNotice, setUploadNotice] = useState<string | null>(null);
 
-  const activeChallenge = useMemo(
-    () => CHALLENGES[activeIndex],
-    [activeIndex]
-  );
+  const activeChallenge = useMemo(() => CHALLENGES[activeIndex], [activeIndex]);
 
   const handleOpen = () => {
     setActiveIndex(0);
@@ -106,7 +103,7 @@ const Pagina2: React.FC = () => {
             className="bg-cover bg-center flex flex-col justify-end overflow-hidden bg-[#f8fbfc] @[480px]:rounded-lg min-h-[218px]"
             style={{
               backgroundImage:
-                'linear-gradient(0deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 25%), url("https://www.southtreks.com/wp-content/uploads/Salar-de-Uyuni-Mirror-20.jpg")',
+                'linear-gradient(0deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 25%), url("https://www.lorenzoexpeditions.com/wp-content/uploads/2022/12/IMG_1019-scaled.jpg")',
             }}
           >
             <div className="flex p-4">
@@ -322,9 +319,7 @@ const Pagina2: React.FC = () => {
 
               {/* Upload stub */}
               <div className="mt-4">
-                <label
-                  className="inline-flex items-center gap-2 rounded-lg border border-[#dbe6ec] px-4 py-2 text-sm font-medium text-[#0d171c] hover:bg-[#f7fbfd] cursor-pointer transition"
-                >
+                <label className="inline-flex items-center gap-2 rounded-lg border border-[#dbe6ec] px-4 py-2 text-sm font-medium text-[#0d171c] hover:bg-[#f7fbfd] cursor-pointer transition">
                   <input
                     type="file"
                     accept="image/*"
