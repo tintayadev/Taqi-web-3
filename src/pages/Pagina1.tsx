@@ -202,36 +202,119 @@ const Pagina1 = () => {
                 </div>
               </div>
 
-              {/* Stats */}
-              <h3 className="text-[#0d171c] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">
-                Stats
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3 px-4 py-3">
-                <div className="flex flex-col gap-2 rounded-lg border border-[#cee0e8] p-3 items-start">
-                  <p className="text-[#0d171c] text-2xl font-bold leading-tight">
-                    {userProfile?.routesCompleted || 0}
-                  </p>
-                  <p className="text-[#49819c] text-sm font-normal leading-normal">
-                    Routes Completed
-                  </p>
-                </div>
-                <div className="flex flex-col gap-2 rounded-lg border border-[#cee0e8] p-3 items-start">
-                  <p className="text-[#0d171c] text-2xl font-bold leading-tight">
-                    {userNFTs?.length || 0}
-                  </p>
-                  <p className="text-[#49819c] text-sm font-normal leading-normal">
-                    NFTs Collected
-                  </p>
-                </div>
-                <div className="flex flex-col gap-2 rounded-lg border border-[#cee0e8] p-3 items-start">
-                  <p className="text-[#0d171c] text-2xl font-bold leading-tight">
-                    {userProfile?.totalPoints || 0}
-                  </p>
-                  <p className="text-[#49819c] text-sm font-normal leading-normal">
-                    Total Points Earned
-                  </p>
-                </div>
-              </div>
+              {/* Stats (only when wallet is connected; fake values if missing) */}
+              {isConnected && (
+                <>
+                  <h3 className="text-[#0d171c] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">
+                    Stats
+                  </h3>
+
+                  {(() => {
+                    // ---- Goals (adjust later) ----
+                    const MONTHLY_ROUTE_GOAL = 10;
+                    const NFT_GOAL = 5;
+
+                    // ---- Real or Fake (only applied when connected) ----
+                    const FAKE_ROUTES_COMPLETED = 3; // e.g., 3/10
+                    const FAKE_NFTS_COLLECTED = 2; // e.g., 2/5
+                    const FAKE_TOTAL_POINTS = 120; // e.g., 120/250 (toward next level)
+
+                    // Prefer real data; if falsy or 0, use fake
+                    const routesCompleted =
+                      (userProfile?.routesCompleted ?? 0) > 0
+                        ? (userProfile!.routesCompleted as number)
+                        : FAKE_ROUTES_COMPLETED;
+
+                    const nftsCollected =
+                      (userNFTs?.length ?? 0) > 0
+                        ? userNFTs!.length
+                        : FAKE_NFTS_COLLECTED;
+
+                    const totalPoints =
+                      (userProfile?.totalPoints ?? 0) > 0
+                        ? (userProfile!.totalPoints as number)
+                        : FAKE_TOTAL_POINTS;
+
+                    // Next level cap (simple thresholds; align later with your leveling)
+                    const nextPointsThreshold = (points: number) => {
+                      if (points < 50) return 50;
+                      if (points < 100) return 100;
+                      if (points < 250) return 250;
+                      if (points < 500) return 500;
+                      return Math.ceil((points + 1) / 250) * 250;
+                    };
+                    const pointsCap = nextPointsThreshold(totalPoints);
+
+                    const pct = (num: number, den: number) =>
+                      den > 0
+                        ? Math.min(100, Math.round((num / den) * 100))
+                        : 0;
+
+                    const fmt = (num: number, den: number) => `${num}/${den}`;
+
+                    return (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3 px-4 py-3">
+                        {/* Routes Completed */}
+                        <div className="flex flex-col gap-2 rounded-lg border border-[#cee0e8] p-3">
+                          <p className="text-[#0d171c] text-2xl font-bold leading-tight">
+                            {fmt(routesCompleted, MONTHLY_ROUTE_GOAL)}
+                          </p>
+                          <p className="text-[#49819c] text-sm leading-normal">
+                            Routes Completed (monthly goal)
+                          </p>
+                          <div className="h-2 w-full rounded bg-[#eef5f8] overflow-hidden">
+                            <div
+                              className="h-full bg-[#0da6f2] transition-all"
+                              style={{
+                                width: `${pct(
+                                  routesCompleted,
+                                  MONTHLY_ROUTE_GOAL
+                                )}%`,
+                              }}
+                            />
+                          </div>
+                        </div>
+
+                        {/* NFTs Collected */}
+                        <div className="flex flex-col gap-2 rounded-lg border border-[#cee0e8] p-3">
+                          <p className="text-[#0d171c] text-2xl font-bold leading-tight">
+                            {fmt(nftsCollected, NFT_GOAL)}
+                          </p>
+                          <p className="text-[#49819c] text-sm leading-normal">
+                            NFTs Collected
+                          </p>
+                          <div className="h-2 w-full rounded bg-[#eef5f8] overflow-hidden">
+                            <div
+                              className="h-full bg-[#0da6f2] transition-all"
+                              style={{
+                                width: `${pct(nftsCollected, NFT_GOAL)}%`,
+                              }}
+                            />
+                          </div>
+                        </div>
+
+                        {/* Total Points */}
+                        <div className="flex flex-col gap-2 rounded-lg border border-[#cee0e8] p-3">
+                          <p className="text-[#0d171c] text-2xl font-bold leading-tight">
+                            {fmt(totalPoints, pointsCap)}
+                          </p>
+                          <p className="text-[#49819c] text-sm leading-normal">
+                            Total Points (to next level)
+                          </p>
+                          <div className="h-2 w-full rounded bg-[#eef5f8] overflow-hidden">
+                            <div
+                              className="h-full bg-[#0da6f2] transition-all"
+                              style={{
+                                width: `${pct(totalPoints, pointsCap)}%`,
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </>
+              )}
 
               {/* Achievements */}
               <h3 className="text-[#0d171c] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">
