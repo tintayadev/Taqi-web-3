@@ -1,0 +1,147 @@
+# ------------------------
+# Node & package managers
+# ------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.npmrc
+.pnpm-store/
+.pnp.*
+# Keep lockfiles committed for reproducible builds:
+# !package-lock.json
+# !yarn.lock
+# !pnpm-lock.yaml
+
+# -------------
+# Build output
+# -------------
+dist/
+dist-ssr/
+build/
+out/
+lib/
+
+# -----------
+# Vite/Vitest
+# -----------
+.vite/
+.vitest/
+
+# ----------
+# TypeScript
+# ----------
+*.tsbuildinfo
+
+# -----
+# Lint
+# -----
+.eslintcache
+.stylelintcache
+
+# -----
+# Misc
+# -----
+*.local
+.tmp/
+.temp/
+.temp*/
+tmp/
+temp/
+
+# ---------------------------
+# OS / Editor junk we don't need
+# ---------------------------
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+
+# -----------------------
+# Env files (keep examples)
+# -----------------------
+.env
+.env.local
+.env.*.local
+.envrc
+!.env.example
+!.env.local.example
+
+# -----------------------
+# Firebase Hosting caches
+# (keep firebase.json & .firebaserc)
+# -----------------------
+.firebase/*.cache
+.firebase/hosting.*.cache
+firebase-debug.log
+
+# --------------------------------
+# Hardhat / Solidity (on-chain)
+# --------------------------------
+artifacts/
+cache/
+coverage/
+coverage.json
+typechain/
+typechain-types/
+broadcast/
+deployments/
+cache/solidity-coverage/
+
+# If using a separate /onchain workspace:
+onchain/artifacts/
+onchain/cache/
+onchain/coverage/
+onchain/coverage.json
+onchain/typechain/
+onchain/typechain-types/
+onchain/broadcast/
+onchain/deployments/
+onchain/cache/solidity-coverage/
+onchain/.env
+
+# --------------------------
+# Playwright / Cypress (opt)
+# --------------------------
+test-results/
+playwright-report/
+cypress/videos/
+cypress/screenshots/
+
+# dependencies
+node_modules/
+.pnpm-store/
+
+# builds and caches
+dist/
+.vite/
+.cache/
+.eslintcache
+coverage/
+
+# env
+.env
+.env.*.local
+env.local
+
+# firebase
+.firebase/
+.firebaserc.local
+
+# hardhat
+artifacts/
+cache/
+typechain-types/
+
+# OS/editor
+.DS_Store
+*.log
+
+# misc
+.idea/
+.vscode/*
+!.vscode/settings.json
