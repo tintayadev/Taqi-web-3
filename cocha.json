@@ -1,0 +1,55 @@
+{
+  "name": "Foto urbana con parque y edificios",
+  "description": "Una fotografía que muestra un parque infantil junto a edificios residenciales en zona urbana, tomada bajo luz diurna clara.",
+  "image": "https://white-effective-earthworm-758.mypinata.cloud/ipfs/bafkreigutba7axv2h5fm53sinmu5oen56zvcdk7uqevncanelsjuzmvsji",
+  "attributes": [
+    {
+      "trait_type": "Hora del día",
+      "value": "Mediodía"
+    },
+    {
+      "trait_type": "Clima",
+      "value": "Soleado"
+    },
+    {
+      "trait_type": "Tipo de lugar",
+      "value": "Parque + zona residencial"
+    },
+    {
+      "trait_type": "Vegetación presente",
+      "value": "Árboles y palmeras"
+    },
+    {
+      "trait_type": "Juegos infantiles",
+      "value": "Columpios y resbaladeras"
+    },
+    {
+      "trait_type": "Cantidad de autos visibles",
+      "value": 4
+    },
+    {
+      "trait_type": "Cantidad de edificios visibles",
+      "value": 5
+    }
+  ],
+  "creator": {
+    "name": "Tu Nombre o Alias",
+    "wallet_address": "0x408410144Ac2801988AaE7834991772Ab8B2a556", 
+    "contact": "correo@ejemplo.com"
+  },
+  "license": "CC-BY-SA 4.0",
+  "date_created": "2025-09-21T12:00:00Z",
+  "type": "photo",
+  "format": "jpg",
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "extras": {
+    "location": "Cochabamba, Bolivia",
+    "gps": {
+      "latitude": -17.3925,
+      "longitude": -66.1570
+    }
+  }
+}
